@@ -111,6 +111,7 @@ Writing NFC tags on iOS uses the same [nfc.write](#nfcwrite) function as other p
 - [nfc.scanNdef](#nfcscanndef)
 - [nfc.scanTag](#nfcscanTag)
 - [nfc.cancelScan](#nfccancelscan)
+- [nfc.getUid](#nfcgetuid)
 
 ## ReaderMode
 
@@ -865,6 +866,39 @@ Disable NFC reader mode.
 
 - Android
 
+## nfc.getUid
+
+Get the UID of a currently visible tag.
+
+```javascript
+  nfc.getUid();
+```
+
+### Description
+
+Gets the UID of the currently discovered tag. The tag does not need to be connected to call this method. This method
+does not require `nfc.close()`
+
+### Parameters
+
+- none
+
+### Quick Example
+
+```javascript
+getTagUid: function () {
+  return new Promise((resolve, reject) => {
+    nfc.getUid(
+            uid => resolve(uid),
+            err => reject(err)
+    )
+  })
+}
+```
+
+### Supported Platforms
+
+- Android
 
 # Tag Technology Functions
 
