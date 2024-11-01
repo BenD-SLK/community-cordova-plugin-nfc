@@ -881,7 +881,8 @@ does not require `nfc.close()`
 
 ### Parameters
 
-- none
+- __successCallback__: The callback to run when the UID is successfully obtained
+- __errorCallback__: The callback to run if there is an error.
 
 ### Quick Example
 
