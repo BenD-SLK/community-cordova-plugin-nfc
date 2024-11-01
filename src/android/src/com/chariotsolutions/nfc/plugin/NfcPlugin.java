@@ -56,6 +56,7 @@ public class NfcPlugin extends CordovaPlugin {
     private static final String ENABLED = "enabled";
     private static final String INIT = "init";
     private static final String SHOW_SETTINGS = "showSettings";
+    private static final String GET_UID = "getUid";
 
     private static final String NDEF = "ndef";
     private static final String NDEF_MIME = "ndef-mime";
@@ -225,7 +226,11 @@ public class NfcPlugin extends CordovaPlugin {
                 byte[] command = args.getArrayBuffer(0);
                 transceive(command, callbackContext);
                 break;
-
+            
+            case GET_UID:
+                getUid(callbackContext);
+                break;
+                
             case CLOSE:
                 close(callbackContext);
                 break;
@@ -863,5 +868,10 @@ public class NfcPlugin extends CordovaPlugin {
                 callbackContext.error(e.getMessage());
             }
         });
+    }
+    
+    private void getUid(final CallbackContext callbackContext) {
+       Tag tag = savedIntent.getParcelableExtra(NfcAdapter.EXTRA_TAG);
+       callbackContext.success(tag.getId());
     }
 }
